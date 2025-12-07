@@ -1,10 +1,11 @@
 
 # ReMarks: Hybrid Bookmark Sync
 
-**ReMarks** is a Chrome extension designed to maintain a list of bookmarks synchronized across different profiles (e.g., Personal vs. Work) using your own private GitHub repository as the secure backend.
+**ReMarks** is a Chrome extension designed to maintain a list of bookmarks synchronized across different Chrome profiles (e.g., Personal vs. Work) using your own private GitHub repository as the secure backend.
 
 It doesn't replace native Chrome Sync; it complements it.
-<p>
+
+
 ![ReMarks](screenshot.jpg)
 
 ## The Concept: Hybrid Synchronization
