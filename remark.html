@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body { width: 350px; padding: 15px; font-family: sans-serif; }
+    h3 { margin-top: 0; }
+    summary { cursor: pointer; outline: none; }
+    button { cursor: pointer; }
+    .folder-check { margin-right: 6px; }
+    /* Link styling for the security note */
+    a { text-decoration: none; }
+    a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <h3>Git Merge Sync</h3>
+  
+  <details>
+    <summary style="color:#555; margin-bottom:5px;">⚙️ GitHub Credentials</summary>
+    <div style="margin-top:5px; padding:10px; background:#f9f9f9; border:1px solid #eee; border-radius: 4px;">
+      
+      <p style="font-size:11px; color:#586069; margin: 0 0 10px 0; line-height: 1.4; border-bottom: 1px solid #e1e4e8; padding-bottom: 8px;">
+        🔒 <b>Security Check:</b> Your token is stored locally and never shared. 
+        <br>
+        This extension is open source. 
+        <a href="https://github.com/phcollignon/bookmarks" target="_blank" style="color:#0366d6;">Verify the code on GitHub</a>.
+      </p>
+      <input type="text" id="ghUsername" placeholder="GitHub Username" style="width:95%; margin-bottom:5px; padding: 5px;">
+      <input type="text" id="ghRepo" placeholder="Repository Name" style="width:95%; margin-bottom:5px; padding: 5px;">
+      <input type="password" id="ghToken" placeholder="Personal Access Token" style="width:95%; margin-bottom:10px; padding: 5px;">
+      <button id="saveBtn" style="width:100%; padding: 5px;">Save Credentials</button>
+    </div>
+  </details>
+
+  <hr style="border: 0; border-top: 1px solid #eee; margin: 15px 0;">
+
+  <div style="margin-bottom: 15px;">
+    <label style="font-weight:bold; font-size:13px;">📥 Selective Import</label>
+    <p style="font-size:11px; color:#666; margin:3px 0 8px 0;">
+      Select which remote folders to merge into this browser.
+    </p>
+    <button id="loadRemoteBtn" style="font-size:11px; padding: 5px;">📂 Load Folders from GitHub</button>
+    
+    <div id="folderTree" style="max-height: 150px; overflow-y: auto; border:1px solid #ddd; margin-top:5px; padding:5px; display:none;">
+      </div>
+  </div>
+
+  <button id="syncBtn" style="width:100%; padding: 12px; background: #2196F3; color: white; border: none; font-weight:bold; border-radius: 4px; cursor: pointer;">
+    🔄 SYNC & MERGE
+  </button>
+  
+  <div id="log" style="margin-top:10px; font-size:11px; color:#333; height:80px; overflow-y:scroll; border:1px solid #ddd; padding:5px; font-family:monospace; background: #fff;"></div>
+  
+  <script src="remark.js"></script>
+</body>
+</html>

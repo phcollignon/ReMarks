@@ -1,0 +1,10 @@
+{
+  "manifest_version": 3,
+  "name": "ReMark",
+  "version": "2.0",
+  "permissions": [ "bookmarks", "storage" ],
+  "host_permissions": [ "https://api.github.com/*" ],
+  "action": {
+    "default_popup": "remark.html"
+  }
+}
