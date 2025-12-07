@@ -106,7 +106,7 @@ This README automatically updates with a clickable, collapsible tree (see the "I
 **2. Import to Browser (Manual)**
 If you are on a public computer or a device where you cannot install the extension:
 
-1.  Download the [`bookmarks.html`](https://www.google.com/search?q=./bookmarks.html) file from the file list above.
+1.  Download the `bookmarks.html` file from the file list.
 2.  Open your browser's Bookmark Manager.
 3.  Select **Import Bookmarks** and choose the downloaded file to restore your full folder structure.
 
