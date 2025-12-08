@@ -60,7 +60,7 @@ document.getElementById('loadRemoteBtn').addEventListener('click', async () => {
     }
 });
 
-// Helper: recursive HTML builder
+// Helper: recursive HTML builder for the UI
 function buildCheckboxTree(nodes, parentPath = []) {
     let html = '<ul style="list-style:none; padding-left:20px; margin:0;">';
     
@@ -91,6 +91,7 @@ function buildCheckboxTree(nodes, parentPath = []) {
     return html;
 }
 
+// Recursive Checkbox Logic (Checking parent selects children)
 document.getElementById('folderTree').addEventListener('change', (e) => {
     if(e.target.classList.contains('folder-check')) {
         const isChecked = e.target.checked;
@@ -162,6 +163,7 @@ async function mergeRemoteToLocal(remoteTree, allowedPaths = []) {
     for (const item of flatRemote) {
         if (!item.url) continue;
 
+        // Selective Import Filter
         if (allowedPaths && allowedPaths.length > 0) {
             const itemPathStr = item.path.join('###');
             const isAllowed = allowedPaths.some(allowed => itemPathStr.startsWith(allowed));
@@ -185,6 +187,7 @@ async function ensurePath(pathArr) {
 
     if (pathArr.length > 0) {
         const rootName = pathArr[0].toLowerCase();
+        // Map common names to Chrome's internal Root IDs
         if (rootName === 'bookmarks bar' || rootName === 'barre de favoris') { pid = '1'; start = 1; } 
         else if (rootName === 'other bookmarks' || rootName === 'autres favoris') { pid = '2'; start = 1; }
         else if (rootName === 'mobile bookmarks') { pid = '3'; start = 1; }
@@ -202,13 +205,24 @@ async function ensurePath(pathArr) {
     return pid;
 }
 
-// --- UTILITIES ---
+// --- UTILITIES (FIXED FLATTEN FUNCTION) ---
 function flatten(nodes, path, list) {
     for (const n of nodes) {
-        if(n.id === '0') { flatten(n.children, path, list); continue; }
-        const newPath = [...path, n.title];
-        list.push({ title: n.title, url: n.url, path: newPath }); 
-        if (n.children) flatten(n.children, newPath, list);
+        if (n.id === '0') { 
+            flatten(n.children, path, list); 
+            continue; 
+        }
+        
+        // 1. If it's a bookmark, add it to the list using the CURRENT path (parent)
+        if (n.url) {
+            list.push({ title: n.title, url: n.url, path: path }); 
+        }
+
+        // 2. If it's a folder, recurse deeper using a NEW path
+        if (n.children) {
+            const newPath = [...path, n.title];
+            flatten(n.children, newPath, list);
+        }
     }
 }
 
